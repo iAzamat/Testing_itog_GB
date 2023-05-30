@@ -91,16 +91,82 @@ history > TerminalHistory.txt
 ![Task6](./resources/image/task6.png)
 
 7. В подключенном MySQL репозитории создать базу данных “Друзья человека”
+```bash
+mysql -u root -p
+```
+```SQL
+CREATE DATABASE Human_friends;
+SHOW databases;
+```
+
+![Task7](./resources/image/task7.png)
 
 8. Создать таблицы с иерархией из диаграммы в БД
 
+    <a href="resources/files/Animals.sql" target="_blank">Animals.sql</a>
+
 9.  Заполнить низкоуровневые таблицы именами(животных), командами которые они выполняют и датами рождения
 
+    <a href="resources/files/AnimalsData.sql" target="_blank">AnimalsData.sql</a>
+
 10. Удалив из таблицы верблюдов, т.к. верблюдов решили перевезти в другой питомник на зимовку. Объединить таблицы лошади, и ослы в одну таблицу.
+```SQL
+USE Human_friends;
+SET SQL_SAFE_UPDATES = 0;
+DELETE FROM camel;
+
+SELECT Name, Birthday, Commands 
+FROM horse
+UNION 
+SELECT Name, Birthday, Commands 
+FROM donkey;
+```
 
 11. Создать новую таблицу “молодые животные” в которую попадут все животные старше 1 года, но младше 3 лет и в отдельном столбце с точностью до месяца подсчитать возраст животных в новой таблице
 
+```SQL
+CREATE TEMPORARY TABLE animal AS 
+SELECT *, 'Лошади' as genus FROM horse
+UNION SELECT *, 'Ослы' AS genus FROM donkey
+UNION SELECT *, 'Собаки' AS genus FROM dog
+UNION SELECT *, 'Кошки' AS genus FROM cat
+UNION SELECT *, 'Хомяки' AS genus FROM hamster;
+
+CREATE TABLE young_animal AS
+SELECT Name, Birthday, Commands, genus, TIMESTAMPDIFF(MONTH, Birthday, CURDATE()) AS Age_in_month
+FROM animal WHERE Birthday BETWEEN ADDDATE(curdate(), INTERVAL -3 YEAR) AND ADDDATE(CURDATE(), INTERVAL -1 YEAR);
+ 
+SELECT * FROM young_animal;
+```
+
 12. Объединить все таблицы в одну, при этом сохраняя поля, указывающие на прошлую принадлежность к старым таблицам.
+
+```SQL
+SELECT h.Name, h.Birthday, h.Commands, pa.Genus_name, ya.Age_in_month 
+FROM horse h
+LEFT JOIN young_animal ya ON ya.Name = h.Name
+LEFT JOIN packed_animal pa ON pa.Id = h.Genus_id
+UNION 
+SELECT d.Name, d.Birthday, d.Commands, pa.Genus_name, ya.Age_in_month 
+FROM donkey d 
+LEFT JOIN young_animal ya ON ya.Name = d.Name
+LEFT JOIN packed_animal pa ON pa.Id = d.Genus_id
+UNION
+SELECT c.Name, c.Birthday, c.Commands, ha.Genus_name, ya.Age_in_month 
+FROM cat c
+LEFT JOIN young_animal ya ON ya.Name = c.Name
+LEFT JOIN home_animal ha ON ha.Id = c.Genus_id
+UNION
+SELECT d.Name, d.Birthday, d.Commands, ha.Genus_name, ya.Age_in_month 
+FROM dog d
+LEFT JOIN young_animal ya ON ya.Name = d.Name
+LEFT JOIN home_animal ha ON ha.Id = d.Genus_id
+UNION
+SELECT hm.Name, hm.Birthday, hm.Commands, ha.Genus_name, ya.Age_in_month 
+FROM hamster hm
+LEFT JOIN young_animal ya ON ya.Name = hm.Name
+LEFT JOIN home_animal ha ON ha.Id = hm.Genus_id;
+```
 
 13. Создать класс с Инкапсуляцией методов и наследованием по диаграмме.
 
