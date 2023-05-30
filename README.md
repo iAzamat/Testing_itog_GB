@@ -5,6 +5,8 @@
 
 ### Задание
 
+<a href="resources/files/Итоговая%20аттестация.pdf" target="_blank">Файл задания</a>
+
 1. Используя команду cat в терминале операционной системы Linux, создать два файла *Домашние животные* (заполнив файл собаками, кошками, хомяками) и *Вьючные животными* заполнив файл (Лошадьми, верблюдами и ослы), а затем объединить их. 
 Просмотреть содержимое созданного файла. Переименовать файл, дав ему новое имя (Друзья человека).
 
@@ -41,8 +43,7 @@ mv Животные Друзья_человека
 ls
 ```
 
-Task1:
-![Task1](./terminal/screenshot/task1.png)
+![Task1](./resources/image/task1.png)
 
 2. Создать директорию, переместить файл туда.
 
@@ -54,8 +55,8 @@ ls
 ls Животный_мир/*
 ```
 
-Task2:
-![Task2](./terminal/screenshot/task2.png)
+
+![Task2](./resources/image/task2.png)
 
 3. Подключить дополнительный репозиторий MySQL. Установить любой пакет из этого репозитория.
 ```bash
@@ -64,8 +65,7 @@ sudo dpkg -i mysql-apt-config_0.8.25-1_all.deb
 sudo apt install mysql-client -y
 ```
 
-Task3:
-![Task3](./terminal/screenshot/task3.png)
+![Task3](./resources/image/task3.png)
 
 4. Установить и удалить deb-пакет с помощью dpkg.
 
@@ -74,19 +74,21 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 sudo dpkg -r google-chrome-stable
 ```
-Task4
-![Task4](./terminal/screenshot/task4.png)
+
+![Task4](./resources/image/task4.png)
 
 5. Выложить историю команд в терминале ubuntu
 ```bash
 history > TerminalHistory.txt
 ```
 
-Task5:
-<a href="terminal/TerminalHistory.txt" target="_blank">TerminalHistory.txt</a>
+<a href="resources/files/TerminalHistory.txt" target="_blank">TerminalHistory.txt</a>
 
-6. Нарисовать диаграмму, в которой есть класс родительский класс, домашние животные и вьючные животные, в составы которых в случае домашних животных войдут классы: собаки, кошки, хомяки, 
+6. Нарисовать [диаграмму](./resources/diagramm/UML.drawio), в которой есть класс родительский класс, домашние животные и вьючные животные, в составы которых в случае домашних животных войдут классы: собаки, кошки, хомяки, 
 а в класс вьючные животные войдут: (Лошади, верблюды и ослы).
+
+
+![Task6](./resources/image/task6.png)
 
 7. В подключенном MySQL репозитории создать базу данных “Друзья человека”
 
