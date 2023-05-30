@@ -1,0 +1,49 @@
+
+  110  cat > Домашние_животные
+  111  дд
+  112  ll
+  113  rm Домашние_животные 
+  114  дд
+  115  ll
+  116  clear
+  117  cat > Домашние_животные
+  118  rm Домашние_животные 
+  119  cat > Домашние_животные
+  120  cat > Вьючные_животные
+  121  ll
+  122  rm Вьючные_животные 
+  123  rm Домашние_животные 
+  124  дд
+  125  ll
+  126  ls
+  127  clear
+  128  cat > Домашние_животные
+  129  cat > Вьючные_животные
+  130  ls
+  131  cat Домашние_животные
+  132  cat Вьючные_животные
+  133  cat Домашние_животные Вьючные_животные > Животные
+  134  ls
+  135  cat Животные
+  136  mv Животные Друзья_человека
+  137  ls
+  138  clear
+  139  mkdir Животный_мир
+  140  ls
+  141  mv Друзья_человека Животный_мир/
+  142  ls
+  143  ls Животный_мир/*
+  144  clear
+  145  sudo wget -c https://dev.mysql.com/get/mysql-apt-config_0.8.25-1_all.deb
+  146  sudo dpkg -i mysql-apt-config_0.8.25-1_all.deb
+  147  sudo apt install mysql-client
+  148  clear
+  149  sudo dpkg -r mysql-server-8.0
+  150  sudo dpkg mysql-server-8.0
+  151  clear
+  152  sudo dpkg -i mysql-server-8.0
+  153  clear
+  154  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  155  sudo dpkg -i google-chrome-stable_current_amd64.deb
+  156  sudo dpkg -r google-chrome-stable
+  157  history > TerminalHistory.txt
